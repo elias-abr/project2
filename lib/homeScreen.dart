@@ -32,10 +32,30 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: _products.length,
         itemBuilder: (context, index) {
           final product = _products[index];
-          return ListTile(
-            title: Text(product['name']),
-            subtitle: Text(product['description']),
-            trailing: Text('\$${product['price']}'),
+          return Card(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 250,
+                  height: 250,
+                  child: Image.network(product['image']),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('ID: ${product['ID']}'),
+                      Text('Name: ${product['name']}'),
+                      Text('Description: ${product['description']}'),
+                      Text('Cost: ${product['cost']}'),
+                      Text('Price: ${product['price']}'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),
