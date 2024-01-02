@@ -13,4 +13,22 @@ class Api {
       throw Exception('Failed to load products');
     }
   }
+
+  static Future<void> addItem(String name, String description, String quantity,
+      String cost, String price, String image) async {
+    final response = await http.post(
+      Uri.parse('$_baseUrl/addItem.php'),
+      body: {
+        'name': name,
+        'description': description,
+        'quantity': quantity,
+        'cost': cost,
+        'price': price,
+        'image': image,
+      },
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to add item');
+    }
+  }
 }
